@@ -282,16 +282,221 @@ From this representation, we can see that for example, one of the clusters conta
 
 *Visualizing the Decomposed data*
 
- #+ATTR_LATEX: :height 500px :width 480px
+ #+ATTR_LATEX: :height 530px :width 480px
     [[./images/15.png]]
 
+ @@latex:\clearpage@@
+
+ *Data Encoding*
+
+ #+ATTR_LATEX: :height 210px :width 480px
+ [[./images/16.png]]
+
+*Creation of Customer Categories*
+
++ *Report via PCA*
+
+ #+ATTR_LATEX: :height 330px :width 450px
+  [[./images/17.png]]
+
+@@latex:\clearpage@@
+
++ *Score of silhouette intra-cluster*
+
+  #+ATTR_LATEX: :height 530px :width 430px
+  [[./images/18.png]]
+
+  @@latex:\clearpage@@
+
++ *Customers morphology*
+
+  #+ATTR_LATEX: :height 560px :width 450px
+ [[./images/19.png]]
+
+  @@latex:\clearpage@@
+
+* Classification of Customers
+
+** Support Vector Machine Classifier (SVC)
+
+The first classifier we use is the SVC classifier. In order to use it, we create an instance of the Class_Fit class and then callgrid_search(). When calling this method, we provide as parameters:
+
+ + The hyperparameters for which I will seek an optimal value
+ + The number of folds to be used for cross-validation
+
+    #+ATTR_LATEX: :height 560px :width 450px
+ [[./images/20.png]]
+
+*** Confusion Matrix
+
+  #+ATTR_LATEX: :height 300px :width 420px
+ [[./images/21.png]]
+
+@@latex:\clearpage@@
+
+*** SVC Learning Curve
+
+A typical way to test the quality of a fit is to draw a learning curve. In particular, this type of curves allow to detect possible drawbacks in the model, linked for example to over- or under-fitting. This also shows to which extent the mode could benefit from a larger data sample.
+
+  #+ATTR_LATEX: :height 300px :width 420px
+ [[./images/22.png]]
+
+** Logistic Regression
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 170px :width 420px
+ [[./images/23.png]]
+
+*** Logistic Regression Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/24.png]]
+
+
+* K-Nearest Neighbors
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 170px :width 420px
+ [[./images/25.png]]
+
+*** Nearest Neighbors Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/26.png]]
+
+* Decision Tree
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 100px :width 400px
+ [[./images/27.png]]
+
+*** Decision Tree Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/28.png]]
+
+* Random Forest
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 100px :width 400px
+ [[./images/29.png]]
+
+*** Random Forest Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/30.png]]
+
+* AdaBoost Classifier
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 100px :width 400px
+ [[./images/31.png]]
+
+*** AdaBoost Classifier Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/32.png]]
+
+* Gradient Boosting Classifier
+
+*Percentage of Accuracy*
+
+  #+ATTR_LATEX: :height 100px :width 400px
+ [[./images/33.png]]
+
+*** Gradient Boosting Classifier Learning Curve
+
+    #+ATTR_LATEX: :height 340px :width 420px
+ [[./images/34.png]]
+
+
+For all these, the classifier is based on 5 variables which are:
+
+ + *Mean:* amount of the basket of the current purchase
+ + *Categ_N:* with  N∈[0:4] : percentage spent in product category with index  N
+
+Finally, the quality of the predictions of the different classifiers was tested over the last two months of the dataset. The data were then processed in two steps: first, all the data was considered (over the 2 months) to define the category to which each client belongs, and then, the classifier predictions were compared with this category assignment. I then found that 75% of clients are awarded the right classes. The performance of the classifier therefore seems correct given the potential shortcomings of the current model. In particular, a bias that has not been dealt with concerns the seasonality of purchases and the fact that purchasing habits will potentially depend on the time of year (for example, Christmas ). In practice, this seasonal effect may cause the categories defined over a 10-month period to be quite different from those extrapolated from the last two months. In order to correct such bias, it would be beneficial to have data that would cover a longer period of time.
 
 * Final Product Prototype Details
 
 The final product provides service to operators about the most bought combinations of products for them to analyze customer shopping patterns and helps them manage their inventory and also create new strategies and schemes to increase their sales.The service implements the Customer Segmentation Analysis, i.e Association Rule Mining technique on the dataset of transactions collected from E-Commerce Industries.
 
+Some dynamics of the Apriori Algorithm used in this model and their meaning.
 
+1. *Support:* It tells us about the combination of items bought together frequently. It gives the part of transactions that contain both A and B.
 
+    #+begin_export latex
+    $$Support = \frac{freq(A,B)}{N}$$
+    #+end_export
+
+2. *Confidence:* It tells us how frequently the items A and B are bought together, for the no. of  times A is bought.
+
+     #+begin_export latex
+    $$Confidence = \frac{freq(A,B)}{freq(A)}$$
+    #+end_export
+
+3. *Lift:* It indicates the strength of a rule over the randomness of A and B being bought together. It basically measures the strength of any association rule.
+
+  #+begin_export latex
+    $$Lift = \frac{Support)}{Supp(A) x Supp(B)}$$
+    #+end_export
+
+** 1. Feasibility
+
+This project can be developed and deployed within a few years as SaaS( Software as a Service) for anyone to use.
+
+** 2. Viability
+
+As the retail industry grows in India and the world, there will always be small businesses existing which can use this service to improvise on their sales and data warehousing techniques. So, it is viable to survive in the long-term future as well but improvements are necessary as new technologies emerge.
+
+** 3. Monetization
+
+This service is directly monetizable as it can be directly released as a service on completion which can be used by businesses.
+
+* Business Modeling
+
+For this service, it is beneficial to use a Subscription Based Model, where initially some features will be provided for free to engage customer retention and increase our customer count. Later it will be charged a subscription fee to use the service further for their business.In the subscription business model, customers pay a fixed amount of money on fixed time intervals to get access to the product or service provided by the company. The major problem is user conversion; how to convert the users into paid users.
+
+ #+ATTR_LATEX: :height 250px :width 420px
+    [[./images/sub.png]]
+
+* Financial Modeling
+
+It can be directly launched into the retail market.
+
+Let's consider our price of product = 250 for getting our graph
+
+#+ATTR_LATEX: :height 250px :width 430px
+ [[./images/graph.png]]
+
+Financial Equation
+
+#+begin_export latex
+{\Large{$$Y = X^*(1+r)^t$$}}
+
+{\Large{$$Y = (X)^*(3.2)^t$$}}
+
+Y = Profit over Time
+
+X = Price of our Product
+
+r = Growth Rate
+
+t = Time Interval
+
+$\textbf{1+r = 1 + 3.2\% = 1.032}$
+#+end_export
+
+* Conclusion
+
+Customer Segmentation analysis is being used by an increasing number of companies to acquire beneficial insights about associations and hidden relationships. However, for small businesses, this extension is a fantastic opportunity to boost sales and help them develop and grow their business.
+
+@@latex:\clearpage@@
 
 #+begin_export latex
     \begin{thebibliography}{9}
