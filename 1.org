@@ -1,0 +1,314 @@
+#+title: *Customer Segmentation Analysis Model of E-Commerce Industry*
+#+SUBTITLE: *AI Product Prototype Analysis*
+#+AUTHOR: /Chaganti Venkatarami Reddy, Subesha Sasmal, Parth Sukla/
+#+OPTIONS: date:nil toc:nil num:nil
+#+LATEX_HEADER: \usepackage{draftwatermark}
+#+SETUPFILE: /home/reddy/Documents/GitHub/dotfiles/org/latex-standard-reddy.org
+#+LATEX_CLASS_OPTIONS: [a4paper, 11pt]
+
+#+BEGIN_EXPORT latex
+\SetWatermarkLightness{ 0.94 }
+\SetWatermarkText{\textsc{Feynn Labs}}
+% \SetWatermarkColor[gray]{0.5}
+% \SetWatermarkColor[rgb]{1,0,0}
+\SetWatermarkScale{ 0.67 }
+% \SetWatermarkFontSize{2cm}
+
+\let\oldquote\quote
+\let\endoldquote\endquote
+\renewenvironment{quote}[2][]
+  {\if\relax\detokenize{#1}\relax
+     \def\quoteauthor{#2}%
+   \else
+     \def\quoteauthor{#2~---~#1}%
+   \fi
+   \oldquote}
+  {\par\nobreak\smallskip\hfill(\quoteauthor)%
+   \endoldquote\addvspace{\bigskipamount}}
+
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+%\vspace{3cm}
+\begin{center}
+\begin{figure}[h!]
+\hspace{6mm} \includegraphics[width=400px, height=280px]{./images/1.png}
+\vspace{2mm}
+\caption*{\hspace{12mm} AI Prototype Analysis for Customer Segmentation}
+\end{figure}
+\end{center}
+\vspace{10mm}
+\hline
+\vspace{10mm}
+\begin{quote}{Philip Kotler}
+\bsifamily {To be useful, segments must be measurable, substantial, accessible, differentiable, and accountable.}
+\end{quote}
+
+\clearpage
+#+END_EXPORT
+
+@@latex:\clearpage@@
+
+* *Abstract*
+
+Artificial intelligence (AI) has the potential to revolutionize pathology. AI refers to the application of modern machine learning techniques to digital tissue images in order to detect, quantify, or characterize specific cell or tissue structures. By automating time‑consuming diagnostic tasks, AI can greatly reduce the workload and help to remedy the serious shortage of pathologists. At the same time, AI can make analyses more sensitive and reproducible and it can capture novel biomarkers from tissue morphology for precision medicine. In a survey from the year 2019 of 487 pathologists from 54 countries, a great majority looked forward to using AI as a diagnostic tool.
+
+In this report we are going to analyse and explore a E-Commerce bussiness data. And we will create a model to make customer segments based on new customers and their sales.
+
+@@latex:\vspace{5mm}@@
+
+*KeyWords* : /Customers, Segments, E-Commerce, Prototypes, Market segmentation, Stock Code, Basket Price, Cluster analysis, Regression./
+
+@@latex:\vspace{8mm}@@
+
+* *Data Collection*
+
+The data has been collected manually, and the sources used for this process are listed below :
+
+ + https://www.kaggle.com/datasets
+ + https://data.gov.in/
+ + https://www.data.gov/
+ + https://data.worldbank.org/
+ + https://datasetsearch.research.google.com/
+
+@@latex:\vspace{1cm}@@
+
+@@latex:\clearpage@@
+
+* *Business Need Assessment*
+
+   + Many E-Commerce businessess should have a mandatory analysis of their previous sales and they have to create new segments based on new customers.
+   + Analysing their datasets and forecatsing their sales will enable them to buy grocery, according, prepare the types of items that their customers like during a particular time of the year.
+   + There are lot of E-Commerce bussinessess of same type in the city, so this is a big market but we have to *Segment the Market* according to which item is mostly selling.
+   + Properly done, the model can be extended to whole E-Commerce businessess.
+
+
+   [[./images/CS.png]]
+
+@@latex:\vspace{10mm}@@
+
+* *Target Specifications and Characterizations*
+
+ + The target here is to develop a model that will forecast future sales, cut down costs and new segments(customers) of an E-Commerce Industry.
+ + The trend recognition has to be done by a data scientist who has some knowledge about the E-Commerce industry.
+ + Employing someone who has no knowledge about the E-Commerce industry is not a great idea as they will not be able to give the insights of someone who knows about this field.
+ + The model should be able to handle large volumes of data, as in a E-Commerce industry there will be a lot of features for the model to look at and the size of data depends on the sales of a particular month or week.
+ + We should also know in advance whether the customers need our model to forecast the sales for a week or for a month.
+
+
+* Benchmarking Alternative Products
+
+ Many big companies like *Amazon, Flipkart*  have started implementing ML/AI in their outlets and while they are making new products as well. These companies have identified the use of ML and AI and are benefitting from it. A lot of AI companies have also entered the market helping big corporations.
+
+* Applicable Patents
+
+[[https://patents.google.com/patent/US10990644B2/en?q=customer+segmentation&oq=customer+segmentation][Systems and methods for contextual vocabularies and customer segmentation]] by /SDL Netherlands B.V. , Amsterdam Zuidoost ( NL )/ was patented on 2011-01-29.
+
+* Applicable Regulations:
+
+ + Data Protection and Privacy Rules.
+ + License for the open-source codes that might be used in the model implementation.
+ + Laws related to AI.
+
+* Applicable Constraints
+
+ + Data Collection from the customer.
+ + The customer should know about the time, money and scope of the project before it starts.
+ + Transperant use of the data obtained from the customer.
+
+@@latex:\clearpage@@
+
+* Bussiness Opportunities
+
+ The target customers here are mainly local E-Commerce Industries or stores who have a good number of customers.
+
+ Many local E-Commerce stores might be stuck at the same level for some period of time without knowing what to do, to generate more revenue. The main goal while implementing an ML model for their bussiness will be to reduce their cost by suggesting what sort of materials the customers are more buying at a particular time of the year. They are the primary bussiness targets.
+
+ If the customer has a delivery option like *Amazon, Flipkart* etc.,, then we will be able to find the areas that requires more deliveries and weed out areas that are not bringing much profit.
+
+If the model is successfully implemented for the previously mentioned targets,
+the model can be expanded for E-Commerce Industries that are in multiple.
+
+* Concept Development
+
+ We must first understand the environment before we start working on a model and the type of items, the people in that region like and what are the traditions there. After gaining sufficient knowledge about the environment we have to start collecting data. After collecting the data, we have to perform EDA which is used to identify patterns in the dataset and it will help us zone in on the areas that are leaking money. Visualization will help a lot here. Once we have found the trend and outliers, the next step is to use the basic regression models and time-series models , in which we will fit our training dataset and see what sort of results we will be getting. After analysing various parameters like squared-error, etc we will know what type of model to use and what type of model should our model be based around. The models will be regression models and time-series models.
+
+* Implementation
+
+** Packages/Tools Used:
+
+1. *Numpy:* To calculate various calculations related to arrays .
+2. *Pandas:* To read or load the datasets.
+3. *SKLearn:* This is a Machine Learning library which contains builtin Machine Learning algorithms.
+
+   @@latex:\clearpage@@
+
+** Data Preprocessing
+
+*Data Cleaning*
+
+ The data collected is compact and is partly used for visualization purposes and partly for clustering. Python libraries such as NumPy, Pandas, Scikit-Learn, and SciPy are used for the workflow, and the results obtained are ensured to be reproducible.
+
+#+ATTR_LATEX: :scale 0.7
+    [[./images/2.png]]
+
+
+#+ATTR_LATEX: :height 230px :width 400px
+    [[./images/3.png]]
+
+** EDA
+
+We start the Exploratory Data Analysis with some data Analysis drawn from the data without Principal Component Analysis and with some Principal Component Analysis in the dataset obtained from the combination of all the data we have. PCA is a statistical process that converts the observations of correlated features into a set of linearly uncorrelated features with the help of orthogonal transformation. These new transformed features are called the Principal Components. The process helps in reducing dimensions of the data to make the process of classification/regression or any form of machine learning, cost-effective.
+
+*Exploring the content of variables*
+
+This dataframe contains 8 variables that correspond to:
+
++ *InvoiceNo:* Invoice number. Nominal, a 6-digit integral number uniquely assigned to each transaction. If this code starts with letter 'c', it indicates a cancellation.
++ *StockCode:* Product (item) code. Nominal, a 5-digit integral number uniquely assigned to each distinct product.
++ *Description:* Product (item) name. Nominal.
++ *Quantity:* The quantities of each product (item) per transaction. Numeric.
++ *InvoiceDate:* Invoice Date and time. Numeric, the day and time when each transaction was generated.
++ *UnitPrice:* Unit price. Numeric, Product price per unit in sterling.
++ *CustomerID:* Customer number. Nominal, a 5-digit integral number uniquely assigned to each customer.
++ *Country:* Country name. Nominal, the name of the country where each customer resides.
+
+Let's have a look at no.of orders from different countries:
+
+#+ATTR_LATEX: :scale 0.78
+[[./images/4.png]]
+
+We see that the dataset is largely dominated by orders made from the UK.
+
+@@latex:\clearpage@@
+
+*Customers and Products*
+
+It can be seen that the data concern 4372 users and that they bought 3684 different products. The total number of transactions carried out is of the order of  ∼ 22'000.
+
+Now we will determine the number of products purchased in every transaction:
+
+#+ATTR_LATEX: :height 290px :width 470px
+    [[./images/5.png]]
+
+The first lines of this list shows several things worthy of interest:
+
++ The existence of entries with the prefix C for the InvoiceNo variable: this indicates transactions that have been canceled.
++ The existence of users who only came once and only purchased one product (e.g. nº12346).
++ The existence of frequent users that buy a large number of items at each order.
+
+@@latex:\clearpage@@
+
+*Cancelling Orders*
+
+First of all, we count the number of transactions corresponding to canceled orders:
+
+@@latex:\vspace{10mm}@@
+
+#+ATTR_LATEX: :width 470px :height 280px
+[[./images/6.png]]
+
+We note that the number of cancellations is quite large ( ∼ 16% of the total number of transactions).
+
+On these few lines, we see that when an order is canceled, we have another transactions in the dataframe, mostly identical except for the *Quantity* and *InvoiceDate* variables. We decide to check if this is true for all the entries. To do this, I decide to locate the entries that indicate a negative quantity and check if there is systematically an order indicating the same quantity (but positive), with the same description (*CustomerID*, *Description* and *UnitPrice*):
+
+#+ATTR_LATEX: :height 200px :width 470px
+[[./images/7.png]]
+
+*Breakdown of Order Amounts*
+
+#+ATTR_LATEX: :height 280px :width 450px
+[[./images/8.png]]
+
+ It can be seen that the vast majority of orders concern relatively large purchases given that  ∼ 65% of purchases give prizes in excess of £ 200.
+
+@@latex:\clearpage@@
+
+ *Most Common Keywords*
+
+#+ATTR_LATEX: :height 600px :width 470px
+[[./images/9.png]]
+
+@@latex:\clearpage@@
+
+*Creating Clusters of products*
+
+In the case of matrices with binary encoding, the most suitable metric for the calculation of distances is the Hamming's metric. In order to define (approximately) the number of clusters that best represents the data, we use the silhouette score:
+
+#+ATTR_LATEX: :height 200px :width 470px
+    [[./images/10.png]]
+
+In practice, the scores obtained above can be considered equivalent since, depending on the run, scores of  0.1±0.05  will be obtained for all clusters with n_clusters  >  3 (we obtain slightly lower scores for the first cluster). On the other hand, we found that beyond 5 clusters, some clusters contained very few elements. we therefore choose to separate the dataset into 5 clusters. In order to ensure a good classification , we iterate until we obtain the best possible silhouette score, which is, in the present case, around 0.15:
+
+#+ATTR_LATEX: :height 230px :width 470px
+[[./images/11.png]]
+
+@@latex:\clearpage@@
+
+** Characterizing the content of clusters
+
++ *Silhouette intra-cluster score*
+
+  In order to have an insight on the quality of the classification, we can represent the silhouette scores of each element of the different clusters.
+
+#+ATTR_LATEX: :height 480px :width 470px
+  [[./images/12.png]]
+
+@@latex:\clearpage@@
+
++ *Word Cloud*
+
+  Now we can have a look at the type of objects that each cluster represents. In order to obtain a global view of their contents, we determine which keywords are the most frequent in each of them and I output the result as wordclouds:
+
+@@latex:\vspace{5mm}@@
+
+#+ATTR_LATEX: :height 450px :width 470px
+    [[./images/13.png]]
+
+@@latex:\vspace{10mm}@@
+
+From this representation, we can see that for example, one of the clusters contains objects that could be associated with gifts (keywords: Christmas, packaging, card, ...). Another cluster would rather contain luxury items and jewelry (keywords: necklace, bracelet, lace, silver, ...). Nevertheless, it can also be observed that many words appear in various clusters and it is therefore difficult to clearly distinguish them.
+
++ *Principal Component Analysis*
+
+  In order to ensure that these clusters are truly distinct, we look at their composition. Given the large number of variables of the initial matrix, we first perform a PCA, and then check for the amount of variance explained by each component:
+
+@@latex:\vspace{10mm}@@
+
+ #+ATTR_LATEX: :height 400px :width 480px
+    [[./images/14.png]]
+
+ @@latex:\clearpage@@
+
+*Visualizing the Decomposed data*
+
+ #+ATTR_LATEX: :height 500px :width 480px
+    [[./images/15.png]]
+
+
+* Final Product Prototype Details
+
+The final product provides service to operators about the most bought combinations of products for them to analyze customer shopping patterns and helps them manage their inventory and also create new strategies and schemes to increase their sales.The service implements the Customer Segmentation Analysis, i.e Association Rule Mining technique on the dataset of transactions collected from E-Commerce Industries.
+
+
+
+
+#+begin_export latex
+    \begin{thebibliography}{9}
+    \bibitem{texbook}
+     Homeyer A, Lotz J, Schwen LO, Weiss N, Romberg D, Höfener H, et al.\emph{Artificial intelligence in pathology: From prototype to product}, J Pathol Inform 2021;12:13.
+
+    \bibitem{MSA}
+    Dolnicar, S., Grün Bettina, &amp; Leisch, F. (2019). \emph{Market segmentation analysis understanding it, doing it and making it useful}. Springer Nature.
+
+    \bibitem{MS}
+    McDonald, M., &amp; Dunbar, I. (2003). \emph{Market segmentation}. Butterworth-Heinemann.
+
+    \bibitem{CS}
+    Qualtrics AU. 2022. \emph{Customer Segmentation: Definition & Methods}. [online] Available at: \href{https://www.qualtrics.com/au/experience-management/brand/customer-segmentation/?rid=ip&prevsite=en&newsite=au&geo=IN&geomatch=au}{Customer Segmentation by Qualtrics Experience Management}.
+    \end{thebibliography}
+
+        \vspace{40mm}
+      {\hspace{2.5mm} \bsifamily \huge{ Github :  \href{https://github.com/Chaganti-Reddy/AI-Prototype-Customer-Segmentation}{Chaganti Reddy/AI-Prototype}}}
+
+        #+end_export
